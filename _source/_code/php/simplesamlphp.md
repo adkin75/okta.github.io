@@ -229,7 +229,7 @@ PHP, reconfiguring Apache, and creating some symbolic links.
     instructions that you followed above!
 
     > Note: The contents of `{metadata-url}` should look similar to this:
-    > `https://your-domain.oktapreview.com/app/a0b1c2deFGHIJKLMNOPQ/sso/saml/metadata`
+    > `https://{oktaDomain}.com/app/a0b1c2deFGHIJKLMNOPQ/sso/saml/metadata`
 
 
 ## Test the SAML integration

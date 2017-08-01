@@ -23,7 +23,7 @@ Once a session token is obtained, it can be passed into the [OpenID Connect auth
 {:.api .api-request .api-request-example}
 
 ~~~
-https://your-domain.okta.com/oauth2/v1/authorize?client_id={clientId}&response_type=id_token&scope=openid&prompt=none&redirect_uri=https%3A%2F%2Fyour-app.example.com&state=Af0ifjslDkj&nonce=n-0S6_WzA2Mj&sessionToken=0HsohZYpJgMSHwmL9TQy7RRzuY
+https://{oktaDomain}.com/oauth2/v1/authorize?client_id={clientId}&response_type=id_token&scope=openid&prompt=none&redirect_uri=https%3A%2F%2Fyour-app.example.com&state=Af0ifjslDkj&nonce=n-0S6_WzA2Mj&sessionToken=0HsohZYpJgMSHwmL9TQy7RRzuY
 ~~~
 
 > The `prompt=none` param guarantees that the user will not be prompted for credentials. You will either obtain the requested tokens or an OAuth error response.
@@ -49,7 +49,7 @@ The [Okta Sign-In Widget](/docs/guides/okta_sign-in_widget.html) uses this flow.
 
 This scenario is ideal for deployment scenarios where you have implemented both a custom login page and custom landing page for your application. Your web application will solicit and validate the user credentials against your Okta organization by calling the [Authentication API](/docs/api/rest/authn.html) to obtain a [session token](/docs/api/resources/authn.html#session-token).
 
-The session token along with the URL for your landing page can then be used to complete the following [URI Template](http://tools.ietf.org/html/rfc6570) `https://your-domain.okta.com/login/sessionCookieRedirect?token={sessionToken}&redirectUrl={redirectUrl}` that will retrieve a session cookie for a user's browser when visited.
+The session token along with the URL for your landing page can then be used to complete the following [URI Template](http://tools.ietf.org/html/rfc6570) `https://{oktaDomain}.com/login/sessionCookieRedirect?token={sessionToken}&redirectUrl={redirectUrl}` that will retrieve a session cookie for a user's browser when visited.
 
 > You must have your redirect URI white-listed as a Trusted Origin within Okta. This is required to protect against open redirect attacks. {% api_lifecycle ea %}
 
@@ -61,7 +61,7 @@ The session token along with the URL for your landing page can then be used to c
 ~~~ http
 HTTP/1.1 302 Moved Temporarily
 Set-Cookie: my_app_session_cookie_name=my_apps_session_cookie_value; Path=/
-Location: https://your-domain.okta.com/login/sessionCookieRedirect?token=0HsohZYpJgMSHwmL9TQy7RRzuY&redirectUrl=https%3A%2F%2Fwww.example.com%2Fportal%2Fhome
+Location: https://{oktaDomain}.com/login/sessionCookieRedirect?token=0HsohZYpJgMSHwmL9TQy7RRzuY&redirectUrl=https%3A%2F%2Fwww.example.com%2Fportal%2Fhome
 ~~~
 
 The user's browser will set your app's session cookie and follow the redirect to Okta.  Okta will validate the session token and return a 302 status response that sets a session cookie for Okta and redirects the user's browser back to your landing page.  After the page has loaded the user will have an active session with Okta and will be able to SSO into their applications until the session is expired or the user closes the session (logout) or browser application.
