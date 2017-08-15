@@ -33,7 +33,7 @@ As instructed, upload the SHA256 certificate to the ISV.
 
 To update existing app integrations, there are four steps to follow.
 
-  1. List your apps and get the app id, name, and label for each app to update.<br />For each app to update, perform the following steps.<br />
+  1. List your apps and get the app id, name, signonmode, and label for each app to update.<br />For each app to update, perform the following steps.<br />
   2. Generate a new application key credential.
   3. Update the key credential for the app to specify the new signing key id.
   4. Upload the new certificate to the ISV. (This step cannot be automated.)
@@ -162,7 +162,7 @@ Response:
 #### Step 3 – Update the key credential for the app to specify the new signing key id.
 
 Call the [Apps API](/docs/api/resources/apps.html#update-key-credential-for-application) with the app ID you obtained in step 1. In the body, include
-the app name and the app label that you obtained in step 1, the key ID that you obtained in step 2, and the value *SAML_2_0* for the sign on mode.
+the app name, the app label, and the SignOnMode that you obtained in step 1, the key ID that you obtained in step 2.
 
 Request:
 
